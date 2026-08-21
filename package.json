@@ -1,0 +1,21 @@
+{
+  "name": "scrape",
+  "version": "1.0.0",
+  "description": "> An adversarial, multi-agent research engine that automates literature reviews, traces prerequisite citation graphs, and mathematically audits paper claims in isolated execution sandboxes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kashish00208/scrape.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kashish00208/scrape/issues"
+  },
+  "homepage": "https://github.com/kashish00208/scrape#readme"
+}

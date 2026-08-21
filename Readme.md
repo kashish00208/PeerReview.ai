@@ -35,7 +35,7 @@
                                              ▼
                                  ┌───────────────────────┐
                                  │ Python Code Sandbox   │
-                                 │ (E2B / Pyodide Runtime│
+                                 │ (E2B / Pyodide Runtime)│
                                  └───────────┬───────────┘
                                              │ (Execution Logs / Stdout)
                                              ▼
