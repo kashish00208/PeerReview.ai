@@ -1,5 +1,5 @@
 {
-  "name": "scrape",
+  "name": "PeerReview.ai",
   "version": "1.0.0",
   "description": "> An adversarial, multi-agent research engine that automates literature reviews, traces prerequisite citation graphs, and mathematically audits paper claims in isolated execution sandboxes.",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kashish00208/scrape.git"
+    "url": "git+https://github.com/kashish00208/PeerReview.ai.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/kashish00208/scrape/issues"
+    "url": "https://github.com/kashish00208/PeerReview.ai/issues"
   },
-  "homepage": "https://github.com/kashish00208/scrape#readme"
+  "homepage": "https://github.com/kashish00208/PeerReview.ai#readme"
 }
