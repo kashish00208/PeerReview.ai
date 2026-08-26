@@ -44,19 +44,16 @@ export async function resolveArxivUrl(inputURL: string) {
 }
 
 export async function extractDataFromURL(pdfLink: string) {
-  if (!pdfLink.toLowerCase().endsWith(".pdf")) {
-    throw new Error("Incorrect PDF URL");
-  }
-
   const parser = new PDFParse({
     url: pdfLink,
   });
 
   try {
     const data = await parser.getText();
-
+    console.log(data)
     return data.text;
   } finally {
     await parser.destroy();
   }
 }
+
