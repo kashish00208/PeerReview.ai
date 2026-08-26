@@ -1,16 +1,18 @@
 import { XMLParser } from "fast-xml-parser";
+import { PDFParse } from "pdf-parse";
 
-//Script that takes a local PDF or arXiv link, extracts text, and isolates 1 key equation or baseline metric table.
-async function resolveArxivUrl(inputURL: string)  {
-  console.log("Here we are ")
+export async function resolveArxivUrl(inputURL: string) {
   const arXivIdMatch = inputURL.match(
     /arxiv\.org\/(?:abs|pdf)\/([0-9]+\.[0-9]+(?:v[0-9]+)?)/i,
   );
+
   if (!arXivIdMatch) {
     if (inputURL.endsWith(".pdf")) return inputURL;
     throw new Error("Invalid arXiv URL Format");
   }
+
   const arxivID = arXivIdMatch[1];
+
   const apiUrl = `http://export.arxiv.org/api/query?id_list=${arxivID}`;
 
   const response = await fetch(apiUrl);
@@ -22,21 +24,39 @@ async function resolveArxivUrl(inputURL: string)  {
   });
 
   const parsed = parser.parse(xmlData);
-
   const entry = parsed.feed?.entry;
+
   if (!entry) {
-    // Fallback directly to pdf url pattern if feed response is empty
     return `https://arxiv.org/pdf/${arxivID}.pdf`;
   }
 
-  // Find PDF link from atom feed links
   const links = Array.isArray(entry.link) ? entry.link : [entry.link];
+
   const pdfLink = links.find(
     (l: Record<string, string>) =>
-      l["@_title"] === "pdf" || l["@_type"] === "application/pdf",
+      l["@_title"] === "pdf" ||
+      l["@_type"] === "application/pdf",
   );
 
-  return pdfLink ? pdfLink["@_href"] : `https://arxiv.org/pdf/${arxivID}.pdf`;
+  return pdfLink
+    ? pdfLink["@_href"]
+    : `https://arxiv.org/pdf/${arxivID}.pdf`;
 }
 
-export default resolveArxivUrl
+export async function extractDataFromURL(pdfLink: string) {
+  if (!pdfLink.toLowerCase().endsWith(".pdf")) {
+    throw new Error("Incorrect PDF URL");
+  }
+
+  const parser = new PDFParse({
+    url: pdfLink,
+  });
+
+  try {
+    const data = await parser.getText();
+
+    return data.text;
+  } finally {
+    await parser.destroy();
+  }
+}
