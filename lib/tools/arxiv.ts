@@ -1,3 +1,4 @@
+//Script that extract research paper data from URL
 import { XMLParser } from "fast-xml-parser";
 import { PDFParse } from "pdf-parse";
 
