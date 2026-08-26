@@ -1,4 +1,4 @@
-// lib/gemini.ts
+// Gemini client configuration
 import { GoogleGenAI } from "@google/genai";
 
 if (!process.env.GEMINI_API_KEY) {
