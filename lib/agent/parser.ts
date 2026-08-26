@@ -1,6 +1,6 @@
 //chunk PDF, multimodal extract (sections, equations, tables) via Gemini
-import prompt from "../../tools/prompt";
-import { generateFromPdf } from "../../gemini";
+import prompt from "../tools/prompt";
+import { generateFromPdf } from "../gemini";
 export async function extractDataFromURL(pdfLink: string) {
   const response = await fetch(pdfLink);
 
