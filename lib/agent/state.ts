@@ -1,11 +1,13 @@
 // lib/agent/state.ts
 import { Annotation } from "@langchain/langgraph";
 
+
 export interface PaperMeta {
-  arxivId: string;
-  title: string;
-  authors: string[];
-  pdfBase64: string;
+  arxivId:string
+  paperUrl: string;        
+  arxivUrl?: string;       
+  title?: string;
+  authors?: string[];
 }
 
 export interface ExtractedClaim {
@@ -30,39 +32,40 @@ export interface CitationRef {
 }
 
 export interface TraceEvent {
-  node: string;              // which agent node ran
+  node: string;
   timestamp: number;
-  message: string;           // human-readable status for the live feed
+  message: string;
   status: "start" | "success" | "error";
 }
 
+// Shared Graph State 
+
 export const AgentState = Annotation.Root({
-  // input
+  // input — set once at graph entry, passed through untouched
   paper: Annotation<PaperMeta>,
 
-  // parser output
-  extractedText: Annotation<string>({
+  // raw output of extractDataFromURL — whatever shape your parser returns
+  extractedData: Annotation<unknown>({
     reducer: (_, next) => next,
-    default: () => "",
+    default: () => null,
   }),
+
+  // structured claims pulled out of extractedData (populated in M3)
   claims: Annotation<ExtractedClaim[]>({
     reducer: (curr, next) => curr.concat(next),
     default: () => [],
   }),
 
-  // verifier output
   verifications: Annotation<VerificationResult[]>({
     reducer: (curr, next) => curr.concat(next),
     default: () => [],
   }),
 
-  // citation explorer output
   citations: Annotation<CitationRef[]>({
     reducer: (curr, next) => curr.concat(next),
     default: () => [],
   }),
 
-  // critic output
   flaggedIssues: Annotation<string[]>({
     reducer: (curr, next) => curr.concat(next),
     default: () => [],
