@@ -5,14 +5,15 @@ import { extractDataFromURL } from "../../../lib/agent/parser";
 export async function ParsePaper(req: Request, res: Response) {
     try {
         const { paper_url } = req.body;
-
-        if (!paper_url || typeof paper_url !== "string") {
+        console.log(paper_url)
+        if (!paper_url ) {
             return res.status(400).json({
                 error: "paper_url is required and must be a string",
             });
         }
 
-        const arxivUrl = await resolveArxivUrl(paper_url);
+
+        const arxivUrl = await resolveArxivUrl(paper_url.toString());
         const response = await extractDataFromURL(arxivUrl);
 
         return res.status(200).json(response);
@@ -20,9 +21,12 @@ export async function ParsePaper(req: Request, res: Response) {
         console.error("Failed to parse paper:", error);
 
         return res.status(500).json({
-            error: "Failed to parse paper",
+            error: error instanceof Error
+                ? error.message
+                : "Failed to parse paper",
         });
     }
 }
+
 
 export default ParsePaper;

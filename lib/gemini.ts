@@ -13,7 +13,7 @@ export const ai = new GoogleGenAI({
 });
 
 export const MODELS = {
-  flash: "gemini-2.5-flash", 
+  flash: "gemini-3.6-flash", 
   pro: "gemini-2.5-pro",   
 } as const;
 
