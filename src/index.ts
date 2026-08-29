@@ -1,10 +1,16 @@
-import { PDFParse } from "pdf-parse";
-import { extractDataFromURL, resolveArxivUrl } from "../lib/tools/arxiv";
+import express from "express";
+import ParsePaper from "../app/api/papers/route";
+import dotenv from 'dotenv'
 
-async function main() {
-  const urlpaper = await resolveArxivUrl("https://arxiv.org/abs/1706.03762");
-  const dataofpaper = await extractDataFromURL(urlpaper)
-  console.log(dataofpaper)
-}
+dotenv.config()
 
-main().catch(console.error);
+const port = 8080;
+const app = express();
+
+app.use(express.json());
+
+app.post("/api/papers", ParsePaper);
+
+app.listen(port, () => {
+    console.log(`BACKEND IS RUNNING ON PORT ${port}`);
+});
