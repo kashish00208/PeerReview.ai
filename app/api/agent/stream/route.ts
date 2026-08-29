@@ -1,6 +1,6 @@
 // app/api/agent/stream.ts
 import { Request, Response } from "express";
-import { compiledGraph } from "../../../lib/agent/graph";
+import { compiledGraph } from "../../../../lib/agent/graph";
 
 export async function StreamAgent(req: Request, res: Response) {
   const { paper_url } = req.query;
@@ -10,7 +10,12 @@ export async function StreamAgent(req: Request, res: Response) {
   res.setHeader("Connection", "keep-alive");
 
   const stream = await compiledGraph.stream({
-    paper: { arxivId: paper_url as string, title: "", authors: [], pdfBase64: "" },
+    paper: {
+      paperUrl: paper_url?.toString() || "",
+      arxivId: paper_url as string,
+      title: "",
+      authors: [],
+    },
   });
 
   for await (const chunk of stream) {

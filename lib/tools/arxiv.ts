@@ -1,7 +1,7 @@
 //Script that extract research paper data from URL
 import { XMLParser } from "fast-xml-parser";
 
-export async function resolveArxivUrl(inputURL: string) {
+export async function resolveArxivUrl(inputURL: String) {
   const arXivIdMatch = inputURL.match(
     /arxiv\.org\/(?:abs|pdf)\/([0-9]+\.[0-9]+(?:v[0-9]+)?)/i,
   );
