@@ -2,7 +2,6 @@ import { AgentStateType, TraceEvent } from "../../../lib/agent/state";
 import { resolveArxivUrl } from "../../../lib/tools/arxiv";
 import { extractDataFromURL } from "../../../lib/agent/nodes/parser";
 
-
 export async function parserNode(
   state: AgentStateType,
 ): Promise<Partial<AgentStateType>> {
@@ -14,8 +13,16 @@ export async function parserNode(
       status: "start",
     },
   ];
+
   try {
-    const arxivUrl = await resolveArxivUrl(state.paper.arxivId);
+    const paperUrl = state.paper?.paperUrl;
+
+    if (!paperUrl) {
+      throw new Error("Missing paper URL");
+    }
+
+    const arxivUrl = await resolveArxivUrl(paperUrl);
+
     const extracted = await extractDataFromURL(arxivUrl);
 
     trace.push({
@@ -36,6 +43,7 @@ export async function parserNode(
       message: err instanceof Error ? err.message : "Parser failed",
       status: "error",
     });
+
     return { trace };
   }
 }
