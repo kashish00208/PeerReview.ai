@@ -3,12 +3,13 @@ import { Annotation } from "@langchain/langgraph";
 
 
 export interface PaperMeta {
-  arxivId:string
-  paperUrl: string;        
-  arxivUrl?: string;       
+  arxivId?: string;
+  paperUrl: string;
+  arxivUrl?: string;
   title?: string;
   authors?: string[];
 }
+
 
 export interface ExtractedClaim {
   id: string;

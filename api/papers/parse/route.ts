@@ -9,19 +9,23 @@ export async function parserNode(
     {
       node: "parser",
       timestamp: Date.now(),
-      message: "resolve arxiv URL",
+      message: "Resolve arXiv URL",
       status: "start",
     },
   ];
 
   try {
-    const paperUrl = state.paper?.paperUrl;
+    const paperUrl = state.paper?.paperUrl?.trim();
+
+    console.log("Parser received URL:", paperUrl);
 
     if (!paperUrl) {
       throw new Error("Missing paper URL");
     }
 
     const arxivUrl = await resolveArxivUrl(paperUrl);
+
+    console.log("Resolved URL:", arxivUrl);
 
     const extracted = await extractDataFromURL(arxivUrl);
 
@@ -33,14 +37,19 @@ export async function parserNode(
     });
 
     return {
-      extractedData: JSON.stringify(extracted),
+      extractedData: extracted,
       trace,
     };
   } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Parser failed";
+
+    console.error("Parser error:", message);
+
     trace.push({
       node: "parser",
       timestamp: Date.now(),
-      message: err instanceof Error ? err.message : "Parser failed",
+      message,
       status: "error",
     });
 
