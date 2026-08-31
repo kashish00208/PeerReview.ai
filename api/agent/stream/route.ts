@@ -26,7 +26,7 @@ export async function StreamAgent(req: Request, res: Response) {
 
     const paperUrlStr = paper_url.toString().trim();
 
-    const stream = compiledGraph.stream(
+    const streamIterator = await compiledGraph.stream(
       {
         paper: {
           paperUrl: paperUrlStr,
@@ -38,7 +38,7 @@ export async function StreamAgent(req: Request, res: Response) {
       { streamMode: "values" }
     );
 
-    for await (const chunk of await stream) {
+    for await (const chunk of streamIterator) {
       res.write(`data: ${JSON.stringify(chunk)}\n\n`);
     }
 
