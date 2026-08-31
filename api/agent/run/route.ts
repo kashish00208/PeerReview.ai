@@ -1,6 +1,6 @@
 // app/api/agent/run.ts
 import { Request, Response } from "express";
-import { compiledGraph } from "../../../../lib/agent/graph";
+import { compiledGraph } from "../../../lib/agent/graph";
 import { randomUUID } from "crypto";
 
 const activeRuns = new Map<string, ReturnType<typeof compiledGraph.stream>>();

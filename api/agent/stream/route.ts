@@ -1,6 +1,6 @@
 // app/api/agent/stream.ts
 import { Request, Response } from "express";
-import { compiledGraph } from "../../../../lib/agent/graph";
+import { compiledGraph } from "../../../lib/agent/graph";
 
 export async function StreamAgent(req: Request, res: Response) {
   const { paper_url } = req.query;

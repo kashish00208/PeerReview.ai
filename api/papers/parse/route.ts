@@ -1,6 +1,6 @@
-import { AgentStateType, TraceEvent } from "../../../../lib/agent/state";
-import { resolveArxivUrl } from "../../../../lib/tools/arxiv";
-import { extractDataFromURL } from "../../../../lib/agent/nodes/parser";
+import { AgentStateType, TraceEvent } from "../../../lib/agent/state";
+import { resolveArxivUrl } from "../../../lib/tools/arxiv";
+import { extractDataFromURL } from "../../../lib/agent/nodes/parser";
 
 
 export async function parserNode(

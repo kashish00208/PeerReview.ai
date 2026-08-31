@@ -1,4 +1,4 @@
-import { StreamAgent } from "../app/api/agent/stream/route";
+import { StreamAgent } from "../api/agent/stream/route";
 import express from "express";
 
 const PORT = 8080;
@@ -8,4 +8,4 @@ app.use(express.json());
 
 app.get("/api/agent/stream", StreamAgent);
 
-app.listen(PORT,()=>console.log("Hello"))
+app.listen(PORT, () => console.log("Hello"));
