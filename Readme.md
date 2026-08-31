@@ -1,10 +1,10 @@
-# 📚 PaperRefinery: Intelligent Research Paper Analysis Platform
+# 📚 corpus: Intelligent Research Paper Analysis Platform
 
-> **Not another paper summarizer.** PaperRefinery is an AI-powered research assistant that ingests papers, extracts & verifies claims, detects cross-paper contradictions, and builds a persistent knowledge graph — turning your research workflow from scattered summaries into a unified, fact-checked research knowledge base.
+> **Not another paper summarizer.** corpus is an AI-powered research assistant that ingests papers, extracts & verifies claims, detects cross-paper contradictions, and builds a persistent knowledge graph — turning your research workflow from scattered summaries into a unified, fact-checked research knowledge base.
 
 ---
 
-## 🎯 The Problem
+##  The Problem
 
 PhD students and researchers face a critical challenge:
 - Reading **20+ papers** over weeks, losing context between them
@@ -18,7 +18,7 @@ PhD students and researchers face a critical challenge:
 ---
 
 
-## 🚀 Key Features
+##  Key Features
 
 ### 1. **Multimodal PDF Analysis**
 - Parses PDFs using **Google Gemini Vision API**
@@ -96,7 +96,7 @@ PhD students and researchers face a critical challenge:
 
 ---
 
-## 💻 Tech Stack
+##  Tech Stack
 
 **Backend:**
 - **Node.js + Express** — REST API & SSE streaming
@@ -156,12 +156,12 @@ npm run dev
 3. **Click "Run"** and watch the real-time analysis unfold
 4. **View results:**
    - ✓ Execution trace (left panel)
-   - 📄 Extracted paper metadata & content (right panel)
-   - 🎯 Claims, verifications, and issues (bottom panels)
+   -  Extracted paper metadata & content (right panel)
+   -  Claims, verifications, and issues (bottom panels)
 
 ---
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 ### Stream Paper Analysis
 ```http
@@ -182,7 +182,7 @@ data: [DONE]
 
 ---
 
-## 📊 Example Workflow
+##  Example Workflow
 
 **Input:** `https://arxiv.org/abs/1706.03762` (Attention Is All You Need)
 
@@ -244,7 +244,7 @@ FLAGGED ISSUES:
 
 ---
 
-## 🚦 Current Status
+##  Current Status
 
 -  Core agent orchestration (LangGraph)
 -  PDF parsing & Gemini integration
