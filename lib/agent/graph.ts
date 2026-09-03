@@ -1,7 +1,7 @@
 // lib/agent/graph.ts
 import { StateGraph } from "@langchain/langgraph";
 import { AgentState } from "./state";
-import { parserNode } from "./../../api/papers/parse/route";
+import { parserNode } from "../../api/parsePaper/route";
 
 const graph = new StateGraph(AgentState)
   .addNode("parser", parserNode)
